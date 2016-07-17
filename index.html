@@ -1,1 +1,94 @@
-Hello World
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Ink Efect</title>
+	</head>
+	<body>
+		<h1>Ink style</h1>
+		<ul>
+			<li><a>Link one</a></li>
+			<li><a>Link two</a></li>
+			<li><a>Link three</a></li>
+			<li><a>Link four</a></li>
+			<li><a>Link five</a></li>
+		</ul>
+	</body>
+</html>
+
+<!-- jQuery -->
+<script src="http://thecodeplayer.com/u/js/jquery-1.9.1.min.js" type="text/javascript"></script>
+<style>
+/*custom fonts - Bitter, Montserrat*/
+@import url('http://fonts.googleapis.com/css?family=Montserrat|Bitter');
+/*Reset*/
+* {padding: 0;margin: 0;}
+body {background-color: #333}
+ul {
+	background-color: white;
+	border-top: 4px solid green;
+	width: 300px;
+	margin: 0 auto;
+}
+ul li {
+	list-style-type: none;
+	position: relative;/*revisar*/
+	overflow: hidden;/*revisar*/
+}
+
+ul li a {
+	font: normal 14px/28px Montserrat; color: hsl(180, 40%, 40%);
+	padding: 10px 100px;
+	display: block;
+	cursor: pointer;
+	text-decoration: none;
+	position: relative; /*revisar*/
+	user-select: none; /*revisar*/
+}
+.ink {
+	display: block;
+	position: absolute;
+	background: hsl(180, 40%, 80%);
+	border-radius: 100%;
+	transform: scale(0);
+}
+.ink.animate{
+	animation:ripple 0.65s linear;
+}
+@keyframes ripple {
+	100%{
+		opacity: 0;
+		transform: scale(2.5);
+	}
+}
+	
+</style>
+
+<script>
+	//jQuery time
+var parent, ink, d, x, y;
+$("ul li a").click(function(e){
+	parent = $(this).parent();
+	//create .ink element if it doesn't exist
+	if(parent.find(".ink").length == 0)
+		parent.prepend("<span class='ink'></span>");
+	ink = parent.find(".ink");
+	//incase of quick double clicks stop the previous animation
+	ink.removeClass("animate");
+	//set size of .ink
+	if(!ink.height() && !ink.width())
+	{
+		//use parent's width or height whichever is larger for the diameter to make a circle which can cover the entire element.
+		d = Math.max(parent.outerWidth(), parent.outerHeight());
+		ink.css({height: d, width: d});
+	}
+	
+	//get click coordinates
+	//logic = click coordinates relative to page - parent's position relative to page - half of self height/width to make it controllable from the center;
+	x = e.pageX - parent.offset().left - ink.width()/2;
+	y = e.pageY - parent.offset().top - ink.height()/2;
+	
+	//set the position and add class .animate
+	ink.css({top: y+'px', left: x+'px'}).addClass("animate");
+})
+
+</script>
