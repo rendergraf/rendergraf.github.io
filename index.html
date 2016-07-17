@@ -12,6 +12,7 @@
 			<li><a>Link four</a></li>
 			<li><a>Link five</a></li>
 		</ul>
+		<h3>by Xavier Araque</h3>
 	</body>
 </html>
 
@@ -19,21 +20,29 @@
 <script src="https://code.jquery.com/jquery-1.9.1.min.js" integrity="sha256-wS9gmOZBqsqWxgIVgA8Y9WcQOa7PgSIX+rPA0VL2rbQ=" crossorigin="anonymous"></script>
 <style>
 /*custom fonts - Bitter, Montserrat*/
-@import url('//fonts.googleapis.com/css?family=Montserrat|Bitter');
+@import url('http://fonts.googleapis.com/css?family=Montserrat|Bitter');
 /*Reset*/
 * {padding: 0;margin: 0;}
 body {background-color: #333}
 h1 {
-	color: white;
+	color: #FF00E1;
 	width: 300px;
 	margin: 0 auto;
 	font: normal 38px Bitter;
+	margin-top: 20px
+}
+h3 {
+	color: #ccc;
+	font: normal 12px Bitter;
+	width: 300px;
+	margin: 0 auto;
 }
 ul {
 	background-color: white;
-	border-top: 4px solid green;
+	border-top: 4px solid #00E5FF;
 	width: 300px;
 	margin: 0 auto;
+	margin-top: 20px
 }
 ul li {
 	list-style-type: none;
@@ -42,7 +51,8 @@ ul li {
 }
 
 ul li a {
-	font: normal 14px/28px Montserrat; color: hsl(180, 40%, 40%);
+	font: normal 14px/28px Montserrat;
+	color: rgb(0, 128, 0);
 	padding: 10px 100px;
 	display: block;
 	cursor: pointer;
@@ -53,12 +63,16 @@ ul li a {
 .ink {
 	display: block;
 	position: absolute;
-	background: hsl(180, 40%, 80%);
+	/*background: rgba(0, 128, 0, 0.2);*/
 	border-radius: 100%;
 	transform: scale(0);
+	background: -moz-radial-gradient(center, ellipse cover,  rgba(255,106,0,0.25) 0%, rgba(255,106,0,0.26) 1%, rgba(42,252,0,0.36) 14%, rgba(0,229,255,0.63) 50%, rgba(0,229,255,0.81) 74%, rgba(0,93,255,0.85) 80%, rgba(0,93,255,1) 100%);
+	background: -webkit-radial-gradient(center, ellipse cover,  rgba(255,106,0,0.25) 0%,rgba(255,106,0,0.26) 1%,rgba(42,252,0,0.36) 14%,rgba(0,229,255,0.63) 50%,rgba(0,229,255,0.81) 74%,rgba(0,93,255,0.85) 80%,rgba(0,93,255,1) 100%);
+	background: radial-gradient(ellipse at center,  rgba(255,106,0,0.25) 0%,rgba(255,106,0,0.26) 1%,rgba(42,252,0,0.36) 14%,rgba(0,229,255,0.63) 50%,rgba(0,229,255,0.81) 74%,rgba(0,93,255,0.85) 80%,rgba(0,93,255,1) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#40ff6a00', endColorstr='#005dff',GradientType=1 );
 }
-.ink.animate{
-	animation:ripple 0.65s linear;
+.animate{
+	animation:ripple 0.9s ease-out;
 }
 @keyframes ripple {
 	100%{
@@ -66,7 +80,6 @@ ul li a {
 		transform: scale(2.5);
 	}
 }
-	
 </style>
 
 <script>
